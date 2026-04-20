@@ -4,313 +4,425 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIWARGA RT 01</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #0f172a;
-            --text-light: #64748b;
-            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --primary: #1a73e8;
+            --secondary: #34a853;
+            --accent: #fb8c00;
+            --bg: #f4f7f9;
+            --text: #333;
+            --white: #ffffff;
+            --danger: #d32f2f;
+            --admin-bg: #fffbf0;
         }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            margin: 0;
-            display: flex;
-            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .app-shell {
-            width: 100%;
-            max-width: 480px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: var(--bg);
-        }
-
-        header {
-            padding: 40px 24px 20px;
-        }
-
-        .logo-area h1 { margin: 0; font-size: 24px; font-weight: 800; color: var(--primary); }
-        .logo-area p { margin: 5px 0 0; color: var(--text-light); font-size: 14px; }
-
-        /* FEEDBACK: Hero Button & Card */
-        .hero {
-            margin: 20px;
-            padding: 24px;
-            background: linear-gradient(135deg, var(--primary), #3b82f6);
-            border-radius: 28px;
-            color: white;
-            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.3);
-            transition: var(--transition);
-        }
-
-        .btn-main {
-            background: white;
-            color: var(--primary);
-            text-decoration: none;
-            padding: 14px 28px;
-            border-radius: 16px;
-            font-weight: 700;
-            display: inline-block;
-            font-size: 14px;
-            transition: var(--transition);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .btn-main:active {
-            transform: scale(0.92);
-            background: #f1f5f9;
-        }
-
-        /* FEEDBACK: Menu Cards */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            padding: 0 20px;
-        }
-
-        .menu-card {
-            background: var(--card);
-            padding: 24px;
-            border-radius: 24px;
-            text-decoration: none;
-            color: var(--text);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid #f1f5f9;
-            transition: var(--transition);
-        }
-
-        .menu-card:active {
-            transform: scale(0.95);
-            background-color: #f1f5f9;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .icon-box {
-            width: 56px;
-            height: 56px;
-            background: #eff6ff;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            margin-bottom: 12px;
-            transition: var(--transition);
-        }
-
-        .menu-card:active .icon-box { transform: rotate(-5deg); }
-        .menu-card span { font-weight: 700; font-size: 14px; }
-
-        /* Info Section */
-        .desc-section { padding: 30px 20px; }
-        .desc-card {
-            background: #ffffff;
-            padding: 18px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            border: 1px solid #f1f5f9;
-        }
-        .desc-card h4 { margin: 0 0 6px; font-size: 14px; color: var(--primary); font-weight: 700; }
-        .desc-card p { margin: 0; font-size: 12.5px; color: var(--text-light); line-height: 1.5; }
-
-        /* FEEDBACK: Keypad PIN */
-        .modal {
+        /* Portal Viewer Style */
+        #app-viewer {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            z-index: 1000;
+            background: white;
+            z-index: 3000;
+            flex-direction: column;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        .viewer-header {
+            padding: 15px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            gap: 15px;
+        }
+
+        .btn-close-viewer {
+            background: #f1f3f5;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-close-viewer:active { transform: scale(0.9); background: #e9ecef; }
+
+        #app-loader {
+            position: absolute;
+            top: 65px; left: 0; width: 100%; height: calc(100% - 65px);
+            background: white;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(10px);
+            z-index: 3001;
+        }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        iframe { flex: 1; width: 100%; border: none; }
+
+        /* Main UI Style */
+        header {
+            background: linear-gradient(135deg, var(--primary), #1557b0);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-right-radius: 40px;
+            border-bottom-left-radius: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: -30px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+            border-radius: 25px;
+            padding: 30px;
+            color: white;
+            display: block;
+            box-shadow: 0 10px 20px rgba(46, 125, 50, 0.3);
+            margin-bottom: 20px;
+            transition: 0.2s;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+        }
+        .hero-card:active { transform: scale(0.96); opacity: 0.9; }
+
+        .btn-pay {
+            background: white;
+            color: var(--secondary);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        /* Grid Menu */
+        .grid-menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card-small {
+            background: white;
+            border-radius: 22px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .card-small:active { transform: scale(0.92); background: #f8f9fa; }
+        .card-small i { font-size: 30px; color: var(--primary); margin-bottom: 12px; display: block; }
+        .card-small span { font-size: 14px; font-weight: 700; color: #444; }
+
+        /* Description Cards */
+        .info-box {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            border-left: 5px solid var(--primary);
+        }
+        .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
+        .info-box p { font-size: 12px; color: #555; }
+
+        /* Admin Page UI */
+        #admin-page { display: none; padding-top: 20px; }
+        .admin-header { text-align: center; margin-bottom: 30px; }
+        
+        .admin-grid { display: flex; flex-direction: column; gap: 12px; }
+        .btn-admin {
+            padding: 20px;
+            border-radius: 18px;
+            color: white;
+            border: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-admin:active { transform: scale(0.97); }
+
+        /* Modal PIN */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
             background: white;
-            width: 85%;
-            max-width: 340px;
+            width: 90%;
+            max-width: 320px;
+            padding: 30px 20px;
             border-radius: 35px;
-            padding: 35px 25px;
             text-align: center;
-            animation: slideUp 0.3s ease-out;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        .pin-display { display: flex; justify-content: center; gap: 12px; margin: 25px 0; }
+        .pin-dot { width: 15px; height: 15px; background: #e2e8f0; border-radius: 50%; transition: 0.2s; }
+        .pin-dot.active { background: var(--primary); transform: scale(1.3); }
 
-        .pin-display {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 25px 0 35px;
-        }
-
-        .dot {
-            width: 14px;
-            height: 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-        }
-
-        .dot.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: scale(1.2);
-        }
-
-        .keypad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
+        .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .key {
-            padding: 22px;
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            padding: 20px;
             font-size: 22px;
             font-weight: 700;
-            background: #f8fafc;
             border-radius: 20px;
             cursor: pointer;
-            user-select: none;
-            transition: var(--transition);
-            border: 1px solid transparent;
+            transition: 0.1s;
         }
+        .key:active { background: #e2e8f0; transform: scale(0.9); }
 
-        .key:active {
-            transform: scale(0.9);
-            background: #e2e8f0;
-            border-color: #cbd5e1;
-        }
-
-        footer { margin-top: auto; padding: 40px 20px; text-align: center; }
-        .v-text { font-size: 11px; color: #cbd5e1; cursor: pointer; padding: 10px; transition: var(--transition); }
-        .v-text:active { color: var(--primary); opacity: 1; }
+        footer { text-align: center; padding: 40px 20px; font-size: 11px; color: #aaa; }
+        .v-text { cursor: pointer; padding: 10px; display: inline-block; opacity: 0.5; }
     </style>
 </head>
 <body>
 
-<div class="app-shell">
-    <header>
-        <div class="logo-area">
-            <h1>SIWARGA RT 01</h1>
-            <p>Permata Harmoni</p>
+    <div id="app-viewer">
+        <div class="viewer-header">
+            <button class="btn-close-viewer" onclick="closeApp()"><i class="fas fa-arrow-left"></i> Kembali</button>
+            <span id="viewer-title" style="font-weight: 700; font-size: 15px; color: var(--primary);">SIWARGA</span>
         </div>
+        
+        <div id="app-loader">
+            <div class="spinner"></div>
+            <p style="font-size: 13px; color: #666;">Menghubungkan ke server...</p>
+        </div>
+
+        <iframe id="iframe-app" src="" onload="hideLoader()"></iframe>
+    </div>
+
+    <header id="main-header">
+        <i class="fas fa-house-chimney-window" style="font-size: 45px; margin-bottom: 15px;"></i>
+        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA</h1>
+        <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Sistem Informasi & Layanan Warga Digital</p>
     </header>
 
-    <div class="hero">
-        <h2 style="margin:0 0 8px; font-size: 18px;">Iuran Warga</h2>
-        <p style="margin:0 0 20px; font-size: 13px; opacity: 0.9; line-height: 1.5;">Akses mudah untuk iuran bulanan dan dana sosial warga RT 01.</p>
-        <a href="https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec" class="btn-main">Bayar Sekarang</a>
-    </div>
-
-    <div class="menu-grid">
-        <a href="https://script.google.com/macros/s/AKfycbyB9e_R8ywyrIDdKLfGWWTskmpcn_M_u2pi1RkCCCzS9LHkwMP9Whw-v8aWOratr8CEog/exec" class="menu-card">
-            <div class="icon-box">📍</div>
-            <span>Denah Warga</span>
-        </a>
-        <a href="https://script.google.com/macros/s/AKfycbztg35EF5QIxSzYTSFg2XoXbsS4sOdYjRg95s5ieyTP6vvMniPgkVBehpwYDwvJUu9U/exec" class="menu-card">
-            <div class="icon-box">📊</div>
-            <span>Laporan Kas</span>
-        </a>
-    </div>
-
-    <div class="desc-section">
-        <div class="desc-card">
-            <h4>Fungsi Denah</h4>
-            <p>Melihat pemetaan lokasi rumah warga untuk mempermudah tamu atau kurir dalam pencarian alamat.</p>
-        </div>
-        <div class="desc-card">
-            <h4>Fungsi Laporan</h4>
-            <p>Melihat transparansi dana kas RT yang masuk dan keluar secara real-time demi kepercayaan bersama.</p>
-        </div>
-    </div>
-
-    <footer>
-        <div class="v-text" onclick="openModal()">Build v2.6.4-stable</div>
-        <div style="font-size: 12px; color: var(--text-light);">&copy; 2026 RT 01 Permata Harmoni</div>
-        <div style="font-size: 10px; color: #cbd5e1; margin-top: 5px;">Supported by AW Design</div>
-    </footer>
-</div>
-
-<div id="pinModal" class="modal">
-    <div class="modal-content">
-        <h3 style="margin:0 0 10px; color: var(--text)">Panel Keamanan</h3>
-        <p style="font-size:13px; color:var(--text-light); margin-bottom: 20px;">Silakan masukkan PIN Akses</p>
+    <div class="container">
         
-        <div class="pin-display">
-            <div class="dot" id="d1"></div>
-            <div class="dot" id="d2"></div>
-            <div class="dot" id="d3"></div>
-            <div class="dot" id="d4"></div>
-            <div class="dot" id="d5"></div>
-            <div class="dot" id="d6"></div>
+        <div id="main-page">
+            <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec', 'Pembayaran Iuran')" class="hero-card">
+                <p style="font-size: 14px; opacity: 0.9;">Halo Tetangga,</p>
+                <h2 style="font-size: 22px; margin: 5px 0;">Iuran Warga RT 01</h2>
+                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan atau uang keamanan secara online.</p>
+                <div class="btn-pay">Bayar Sekarang <i class="fas fa-chevron-right" style="font-size: 12px; margin-left: 5px;"></i></div>
+                <i class="fas fa-wallet" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: 0.2;"></i>
+            </div>
+
+            <div class="grid-menu">
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyB9e_R8ywyrIDdKLfGWWTskmpcn_M_u2pi1RkCCCzS9LHkwMP9Whw-v8aWOratr8CEog/exec', 'Denah Warga')" class="card-small">
+                    <i class="fas fa-map-location-dot"></i>
+                    <span>Denah Warga</span>
+                </div>
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbztg35EF5QIxSzYTSFg2XoXbsS4sOdYjRg95s5ieyTP6vvMniPgkVBehpwYDwvJUu9U/exec', 'Laporan Keuangan')" class="card-small">
+                    <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
+                    <span>Lap. Keuangan</span>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Denah Digital</h4>
+                <p>Memudahkan pencarian alamat rumah warga dan pemetaan fasilitas lingkungan RT 01.</p>
+            </div>
+            <div class="info-box">
+                <h4>Transparansi Kas</h4>
+                <p>Seluruh dana iuran yang masuk dipublikasikan secara real-time demi akuntabilitas bersama.</p>
+            </div>
         </div>
 
-        <div class="keypad">
-            <div class="key" onclick="press(1)">1</div>
-            <div class="key" onclick="press(2)">2</div>
-            <div class="key" onclick="press(3)">3</div>
-            <div class="key" onclick="press(4)">4</div>
-            <div class="key" onclick="press(5)">5</div>
-            <div class="key" onclick="press(6)">6</div>
-            <div class="key" onclick="press(7)">7</div>
-            <div class="key" onclick="press(8)">8</div>
-            <div class="key" onclick="press(9)">9</div>
-            <div class="key" style="color:#ef4444" onclick="resetPin()">C</div>
-            <div class="key" onclick="press(0)">0</div>
-            <div class="key" style="color:var(--primary)" onclick="closeModal()">✕</div>
+        <div id="admin-page">
+            <div class="admin-header">
+                <i class="fas fa-user-shield" style="font-size: 45px; color: var(--accent); margin-bottom: 10px;"></i>
+                <h2>Menu Pengurus</h2>
+                <p style="font-size: 13px; color: #666;">Akses khusus Ketua RT & Bendahara</p>
+            </div>
+
+            <div class="admin-grid">
+                <button class="btn-admin" style="background: #2e7d32;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec', 'Input Iuran Manual')">
+                    <i class="fas fa-keyboard"></i>
+                    <span>Input Bayar Iuran Manual</span>
+                </button>
+                <button class="btn-admin" style="background: #ef6c00;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbx2exDu-ulTEtX8OMD9YRNvCmEGfoZqhxqn8H7nOTeu-YA5z3zxOF7cSv6xfA7BcBN9/exec', 'Transaksi Bendahara')">
+                    <i class="fas fa-money-bill-transfer"></i>
+                    <span>Input Transaksi Bendahara</span>
+                </button>
+                <button class="btn-admin" style="background: #c62828;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbw1oT64TRJ46bd4PWigU-lWZHhUQzsAeLL7i6rOQ74cLa2rAUJ4pbTTLAnZXGRJhvBfdg/exec', 'Monitoring Tunggakan')">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <span>Monitoring Tunggakan</span>
+                </button>
+                <button class="btn-admin" style="background: #1565c0;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec', 'Database Warga')">
+                    <i class="fas fa-database"></i>
+                    <span>Data Lengkap Warga</span>
+                </button>
+            </div>
+
+            <div style="text-align:center; margin-top:30px;">
+                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali ke Beranda</button>
+            </div>
+        </div>
+
+        <footer>
+            <div class="v-text" onclick="openPinModal()">v2.0.26-build.stable</div>
+            <p>&copy; 2026 RT 01 Permata Harmoni</p>
+            <p style="opacity: 0.4; font-size: 9px; margin-top: 5px;">Supported by AW Design</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="pinModal">
+        <div class="modal-content">
+            <h4 style="color: var(--primary);">Verifikasi Pengurus</h4>
+            <p style="font-size: 12px; color: #888; margin-bottom: 5px;">Masukkan 6 digit PIN rahasia</p>
+            
+            <div class="pin-display">
+                <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
+                <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
+            </div>
+
+            <div class="keypad">
+                <button class="key" onclick="pressKey('1')">1</button>
+                <button class="key" onclick="pressKey('2')">2</button>
+                <button class="key" onclick="pressKey('3')">3</button>
+                <button class="key" onclick="pressKey('4')">4</button>
+                <button class="key" onclick="pressKey('5')">5</button>
+                <button class="key" onclick="pressKey('6')">6</button>
+                <button class="key" onclick="pressKey('7')">7</button>
+                <button class="key" onclick="pressKey('8')">8</button>
+                <button class="key" onclick="pressKey('9')">9</button>
+                <button class="key" style="color:var(--danger)" onclick="clearPin()">C</button>
+                <button class="key" onclick="pressKey('0')">0</button>
+                <button class="key" onclick="closePinModal()"><i class="fas fa-times"></i></button>
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    let currentPin = "";
-    const targetPin = "784512";
+    <script>
+        let inputPin = "";
+        const targetPin = "784512";
 
-    function openModal() { document.getElementById('pinModal').style.display = 'flex'; }
-    function closeModal() { document.getElementById('pinModal').style.display = 'none'; resetPin(); }
+        // Portal Logic
+        function openInPortal(url, title) {
+            document.getElementById('viewer-title').innerText = title;
+            document.getElementById('app-loader').style.display = 'flex'; 
+            document.getElementById('iframe-app').src = url;
+            document.getElementById('app-viewer').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
 
-    function press(num) {
-        if (currentPin.length < 6) {
-            currentPin += num;
+        function closeApp() {
+            document.getElementById('app-viewer').style.display = 'none';
+            document.getElementById('iframe-app').src = "";
+            document.body.style.overflow = 'auto';
+        }
+
+        function hideLoader() {
+            document.getElementById('app-loader').style.display = 'none';
+        }
+
+        // Navigation Logic
+        function openPinModal() {
+            inputPin = "";
             updateDots();
-            if (currentPin.length === 6) {
-                setTimeout(() => {
-                    if (currentPin === targetPin) {
-                        window.location.href = "admin.html";
-                    } else {
-                        alert("PIN Salah!");
-                        resetPin();
-                    }
-                }, 100);
+            document.getElementById('pinModal').style.display = 'flex';
+        }
+
+        function closePinModal() {
+            document.getElementById('pinModal').style.display = 'none';
+        }
+
+        function pressKey(n) {
+            if(inputPin.length < 6) {
+                inputPin += n;
+                updateDots();
+                if(inputPin.length === 6) {
+                    setTimeout(verifyPin, 150);
+                }
             }
         }
-    }
 
-    function updateDots() {
-        for (let i = 1; i <= 6; i++) {
-            document.getElementById(`d${i}`).className = i <= currentPin.length ? "dot active" : "dot";
+        function clearPin() { inputPin = ""; updateDots(); }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.pin-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i < inputPin.length);
+            });
         }
-    }
 
-    function resetPin() { currentPin = ""; updateDots(); }
-</script>
+        function verifyPin() {
+            if(inputPin === targetPin) {
+                closePinModal();
+                document.getElementById('main-page').style.display = 'none';
+                document.getElementById('admin-page').style.display = 'block';
+                window.scrollTo(0,0);
+            } else {
+                alert("PIN SALAH!");
+                clearPin();
+            }
+        }
 
+        function goHome() {
+            document.getElementById('admin-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
