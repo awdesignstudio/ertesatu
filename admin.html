@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Pengurus RT 01</title>
+    <title>Panel Pengurus</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --admin-accent: #e65100;
+            --admin-primary: #f59e0b;
             --bg: #fffbf7;
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
             background-color: var(--bg);
+            margin: 0;
             display: flex;
             justify-content: center;
         }
@@ -22,77 +23,86 @@
         .admin-shell {
             width: 100%;
             max-width: 480px;
-            min-height: 100vh;
             padding: 24px;
-            box-sizing: border-box;
         }
 
         .header {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 16px;
+            margin-bottom: 32px;
+            padding-top: 20px;
         }
 
+        /* FEEDBACK: Back Button */
         .btn-back {
             text-decoration: none;
-            background: #eee;
-            width: 40px;
-            height: 40px;
+            background: white;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            color: #333;
-            font-weight: bold;
+            color: #334155;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            font-size: 20px;
         }
 
-        h2 { margin: 0; font-size: 20px; color: #333; }
+        .btn-back:active { transform: scale(0.85); background: #f1f5f9; }
 
-        .admin-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        h2 { margin: 0; font-size: 22px; color: #1e293b; font-weight: 800; }
 
+        .admin-menu { display: flex; flex-direction: column; gap: 16px; }
+
+        /* FEEDBACK: Admin Menu Cards */
         .admin-card {
             background: white;
-            padding: 20px;
-            border-radius: 18px;
+            padding: 22px;
+            border-radius: 24px;
             text-decoration: none;
-            color: #333;
+            color: #1e293b;
             display: flex;
             align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 12px rgba(230, 81, 0, 0.08);
-            border: 1px solid rgba(230, 81, 0, 0.1);
-            transition: transform 0.2s;
+            gap: 18px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.1);
+            transition: var(--transition);
         }
 
-        .admin-card:active { transform: scale(0.98); }
+        .admin-card:active {
+            transform: scale(0.96);
+            background-color: #fffbeb;
+            box-shadow: 0 2px 4px rgba(245, 158, 11, 0.05);
+        }
 
         .icon {
             font-size: 24px;
-            width: 45px;
-            height: 45px;
-            background: #fff3e0;
+            width: 52px;
+            height: 52px;
+            background: #fffbeb;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 16px;
+            transition: var(--transition);
         }
 
-        .label { font-weight: 600; font-size: 15px; }
+        .admin-card:active .icon { transform: rotate(10deg) scale(1.1); }
 
-        .warning-box {
-            margin-top: 40px;
-            padding: 15px;
-            border-radius: 12px;
-            background: #fee2e2;
-            color: #991b1b;
+        .label { font-weight: 700; font-size: 15px; }
+
+        .footer-note {
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 20px;
+            background: #fff1f2;
+            color: #be123c;
             font-size: 12px;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.6;
+            border: 1px solid #fecdd3;
         }
     </style>
 </head>
@@ -101,34 +111,34 @@
 <div class="admin-shell">
     <div class="header">
         <a href="index.html" class="btn-back">←</a>
-        <h2>Menu Pengurus</h2>
+        <h2>Panel Pengurus</h2>
     </div>
 
     <div class="admin-menu">
         <a href="https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec" class="admin-card">
             <div class="icon">📝</div>
-            <div class="label">Input Bayar Iuran Manual</div>
+            <div class="label">Input Bayar Manual</div>
         </a>
 
         <a href="https://script.google.com/macros/s/AKfycbx2exDu-ulTEtX8OMD9YRNvCmEGfoZqhxqn8H7nOTeu-YA5z3zxOF7cSv6xfA7BcBN9/exec" class="admin-card">
             <div class="icon">💰</div>
-            <div class="label">Input Transaksi Bendahara</div>
+            <div class="label">Input Kas Bendahara</div>
         </a>
 
         <a href="https://script.google.com/macros/s/AKfycbw1oT64TRJ46bd4PWigU-lWZHhUQzsAeLL7i6rOQ74cLa2rAUJ4pbTTLAnZXGRJhvBfdg/exec" class="admin-card">
-            <div class="icon">⚠️</div>
-            <div class="label">Monitoring Tunggakan</div>
+            <div class="icon">🔍</div>
+            <div class="label">Cek Tunggakan</div>
         </a>
 
         <a href="https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec" class="admin-card">
-            <div class="icon">👥</div>
-            <div class="label">Data Lengkap Warga</div>
+            <div class="icon">📂</div>
+            <div class="label">Database Warga</div>
         </a>
     </div>
 
-    <div class="warning-box">
-        <b>PERHATIAN:</b><br>
-        Halaman ini bersifat rahasia. Pastikan Anda menutup browser atau kembali ke halaman utama setelah melakukan input data.
+    <div class="footer-note">
+        <strong>KEAMANAN DATA</strong><br>
+        Selalu kembali ke halaman utama setelah selesai menginput data untuk menghindari akses tidak sah.
     </div>
 </div>
 
