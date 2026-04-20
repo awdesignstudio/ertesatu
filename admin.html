@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Pengurus RT 01</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --admin-accent: #e65100;
+            --bg: #fffbf7;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+        }
+
+        .admin-shell {
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .btn-back {
+            text-decoration: none;
+            background: #eee;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #333;
+            font-weight: bold;
+        }
+
+        h2 { margin: 0; font-size: 20px; color: #333; }
+
+        .admin-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(230, 81, 0, 0.08);
+            border: 1px solid rgba(230, 81, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .admin-card:active { transform: scale(0.98); }
+
+        .icon {
+            font-size: 24px;
+            width: 45px;
+            height: 45px;
+            background: #fff3e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+
+        .label { font-weight: 600; font-size: 15px; }
+
+        .warning-box {
+            margin-top: 40px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #fee2e2;
+            color: #991b1b;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-shell">
+    <div class="header">
+        <a href="index.html" class="btn-back">←</a>
+        <h2>Menu Pengurus</h2>
+    </div>
+
+    <div class="admin-menu">
+        <a href="https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec" class="admin-card">
+            <div class="icon">📝</div>
+            <div class="label">Input Bayar Iuran Manual</div>
+        </a>
+
+        <a href="https://script.google.com/macros/s/AKfycbx2exDu-ulTEtX8OMD9YRNvCmEGfoZqhxqn8H7nOTeu-YA5z3zxOF7cSv6xfA7BcBN9/exec" class="admin-card">
+            <div class="icon">💰</div>
+            <div class="label">Input Transaksi Bendahara</div>
+        </a>
+
+        <a href="https://script.google.com/macros/s/AKfycbw1oT64TRJ46bd4PWigU-lWZHhUQzsAeLL7i6rOQ74cLa2rAUJ4pbTTLAnZXGRJhvBfdg/exec" class="admin-card">
+            <div class="icon">⚠️</div>
+            <div class="label">Monitoring Tunggakan</div>
+        </a>
+
+        <a href="https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec" class="admin-card">
+            <div class="icon">👥</div>
+            <div class="label">Data Lengkap Warga</div>
+        </a>
+    </div>
+
+    <div class="warning-box">
+        <b>PERHATIAN:</b><br>
+        Halaman ini bersifat rahasia. Pastikan Anda menutup browser atau kembali ke halaman utama setelah melakukan input data.
+    </div>
+</div>
+
+</body>
+</html>
