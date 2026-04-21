@@ -1,0 +1,36 @@
+{
+  "name": "Siwarga RT 01 Permata",
+  "short_name": "Siwarga01",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f4f7f9",
+  "theme_color": "#1a73e8",
+  "icons": [
+    {
+      "src": "ertesatuicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "ertesatuicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "ertesatuscreenshot-mobile.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Tampilan Mobile RT 01"
+    },
+    {
+      "src": "ertesatuscreenshot-landscape.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Tampilan Desktop/Tablet RT 01"
+    }
+  ]
+}
