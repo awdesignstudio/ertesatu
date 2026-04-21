@@ -1,4 +1,4 @@
-const CACHE_NAME = 'siwarga-rt01-v1.2';
+const CACHE_NAME = 'siwarga-rt01-v1.3';
 const urlsToCache = [
   'index.html',
   'manifest.json'
