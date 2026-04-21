@@ -23,7 +23,7 @@
             --text: #333;
             --white: #ffffff;
             --danger: #d32f2f;
-            --wa-color: #25d366;
+            --wa: #25d366;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -119,6 +119,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: 0.2s;
         }
+        #btn-install:active { transform: scale(0.9); }
 
         .install-info {
             font-size: 11px;
@@ -127,10 +128,13 @@
             max-width: 280px;
             margin: 0 auto 10px;
             line-height: 1.4;
+            font-weight: 400;
         }
 
         @media (display-mode: standalone) {
-            #btn-install, .install-info { display: none !important; }
+            #btn-install, .install-info {
+                display: none !important;
+            }
             header { padding: 50px 20px 30px; }
         }
 
@@ -152,10 +156,10 @@
             text-decoration: none;
             position: relative;
             overflow: hidden;
+            border: none;
             width: 100%;
             text-align: left;
             cursor: pointer;
-            border:none;
         }
         .hero-card:active { transform: scale(0.96); opacity: 0.9; }
 
@@ -201,8 +205,39 @@
         .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
         .info-box p { font-size: 12px; color: #555; }
 
-        /* --- PAGES --- */
-        #admin-page, #pengurus-list-page { display: none; padding-top: 20px; }
+        /* --- SURGICAL UPDATE: PENGURUS PAGE --- */
+        #pengurus-page { display: none; padding-top: 10px; }
+        .pengurus-list { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+        .pengurus-card {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+        .pengurus-info h4 { font-size: 14px; color: #333; margin-bottom: 2px; }
+        .pengurus-info p { font-size: 11px; color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-wa {
+            background: var(--wa);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
+            transition: 0.2s;
+        }
+        .btn-wa:active { transform: scale(0.8); }
+
+        /* --- ADMIN SECTION --- */
+        #admin-page { display: none; padding-top: 20px; }
         .admin-header { text-align: center; margin-bottom: 30px; }
         
         .admin-grid { display: flex; flex-direction: column; gap: 12px; }
@@ -221,37 +256,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
-
-        /* --- PENGURUS ITEM STYLE --- */
-        .pengurus-list { display: flex; flex-direction: column; gap: 12px; }
-        .pengurus-item {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-        }
-        .pengurus-info h4 { font-size: 15px; color: #333; }
-        .pengurus-info p { font-size: 11px; color: var(--primary); font-weight: 700; text-transform: uppercase; }
-        
-        .btn-wa {
-            background-color: var(--wa-color);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 18px;
-            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.2);
-            transition: 0.2s;
-        }
-        .btn-wa:active { transform: scale(0.8); }
+        .btn-admin:active { transform: scale(0.97); }
 
         /* --- MODAL PIN --- */
         .modal-overlay {
@@ -302,16 +307,22 @@
             <button class="btn-close-viewer" onclick="closeApp()"><i class="fas fa-arrow-left"></i> Kembali</button>
             <span id="viewer-title" style="font-weight: 700; font-size: 15px; color: var(--primary);">SIWARGA</span>
         </div>
-        <div id="app-loader"><div class="spinner"></div><p style="font-size: 13px; color: #666;">Menghubungkan...</p></div>
+        
+        <div id="app-loader">
+            <div class="spinner"></div>
+            <p style="font-size: 13px; color: #666;">Menghubungkan ke server...</p>
+        </div>
+
         <iframe id="iframe-app" src="" onload="hideLoader()"></iframe>
     </div>
 
     <header id="main-header">
         <i class="fas fa-house-chimney-window" style="font-size: 45px; margin-bottom: 15px;"></i>
         <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA</h1>
-        <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Layanan Warga Digital</p>
+        <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Sistem Informasi & Layanan Warga Digital</p>
+        
         <button id="btn-install"><i class="fas fa-cloud-arrow-down"></i> Instal Aplikasi</button>
-        <p class="install-info">Akses praktis langsung dari layar HP Anda.</p>
+        <p class="install-info">Instal aplikasi di layar HP untuk akses lebih cepat, praktis, dan tampilan penuh tanpa bar browser.</p>
     </header>
 
     <div class="container">
@@ -320,11 +331,16 @@
             <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec', 'Pembayaran Iuran')" class="hero-card">
                 <p style="font-size: 14px; opacity: 0.9;">Halo Tetangga,</p>
                 <h2 style="font-size: 22px; margin: 5px 0;">Iuran Warga RT 01</h2>
-                <div class="btn-pay">Bayar Sekarang <i class="fas fa-chevron-right" style="font-size: 12px;"></i></div>
+                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan online.</p>
+                <div class="btn-pay">Bayar Sekarang <i class="fas fa-chevron-right" style="font-size: 12px; margin-left: 5px;"></i></div>
                 <i class="fas fa-wallet" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: 0.2;"></i>
             </div>
 
             <div class="grid-menu">
+                <div onclick="showPengurusPage()" class="card-small">
+                    <i class="fas fa-users-rectangle"></i>
+                    <span>Susunan Pengurus</span>
+                </div>
                 <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyB9e_R8ywyrIDdKLfGWWTskmpcn_M_u2pi1RkCCCzS9LHkwMP9Whw-v8aWOratr8CEog/exec', 'Denah Warga')" class="card-small">
                     <i class="fas fa-map-location-dot"></i>
                     <span>Denah Warga</span>
@@ -333,31 +349,71 @@
                     <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
                     <span>Lap. Keuangan</span>
                 </div>
-                <div onclick="showPengurusList()" class="card-small" style="grid-column: span 2;">
-                    <i class="fas fa-users-rectangle" style="color: var(--secondary);"></i>
-                    <span>Susunan Pengurus RT 01</span>
+                <div onclick="openPinModal()" class="card-small">
+                    <i class="fas fa-user-shield" style="color: var(--primary);"></i>
+                    <span>Menu Pengurus</span>
                 </div>
+            </div>
+
+            <div class="info-box">
+                <h4>Denah Digital</h4>
+                <p>Informasi pemetaan rumah warga RT 01 Permata Harmoni.</p>
+            </div>
+            <div class="info-box">
+                <h4>Transparansi Kas</h4>
+                <p>Laporan iuran warga yang dipublikasikan secara terbuka.</p>
             </div>
         </div>
 
-        <div id="pengurus-list-page">
+        <div id="pengurus-page">
             <div class="admin-header">
                 <i class="fas fa-users" style="font-size: 45px; color: var(--primary); margin-bottom: 10px;"></i>
                 <h2>Susunan Pengurus</h2>
-                <p style="font-size: 12px; color: #666;">RT 01 Permata Harmoni</p>
+                <p style="font-size: 13px; color: #666;">RT 01 Permata Harmoni Periode 2024 - 2027</p>
             </div>
+
             <div class="pengurus-list">
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Joko</h4><p>Ketua RT</p></div><a href="https://wa.me/6285643748060" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Lutfi</h4><p>Sekretaris</p></div><a href="https://wa.me/6281902501958" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Nuril</h4><p>Bendahara 1</p></div><a href="https://wa.me/6281325745951" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Wiku</h4><p>Bendahara 2</p></div><a href="https://wa.me/6285291310312" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Aris</h4><p>Seksi Keamanan</p></div><a href="https://wa.me/628112962603" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Adi</h4><p>Seksi Kebersihan</p></div><a href="https://wa.me/6285866203352" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Mahmud</h4><p>Seksi Pembangunan/Sarpras</p></div><a href="https://wa.me/6281393841122" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Banar</h4><p>Seksi Humas</p></div><a href="https://wa.me/6287821807879" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
-                <div class="pengurus-item"><div class="pengurus-info"><h4>Adi Wibowo</h4><p>Seksi Ekonomi/Event</p></div><a href="https://wa.me/6281299858390" class="btn-wa"><i class="fab fa-whatsapp"></i></a></div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Joko</h4><p>Ketua RT</p></div>
+                    <a href="https://wa.me/6285643748060" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Lutfi</h4><p>Sekretaris</p></div>
+                    <a href="https://wa.me/6281902501958" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Nuril</h4><p>Bendahara 1</p></div>
+                    <a href="https://wa.me/6281325745951" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Wiku</h4><p>Bendahara 2</p></div>
+                    <a href="https://wa.me/6285291310312" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Aris</h4><p>Seksi Keamanan</p></div>
+                    <a href="https://wa.me/628112962603" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Adi</h4><p>Seksi Kebersihan</p></div>
+                    <a href="https://wa.me/6285866203352" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Mahmud</h4><p>Seksi Pembangunan/Sarpras</p></div>
+                    <a href="https://wa.me/6281393841122" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Banar</h4><p>Seksi Humas</p></div>
+                    <a href="https://wa.me/6287821807879" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <div class="pengurus-card">
+                    <div class="pengurus-info"><h4>Adi Wibowo</h4><p>Seksi Ekonomi/Event</p></div>
+                    <a href="https://wa.me/6281299858390" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div style="text-align:center; margin-top:30px;"><button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali</button></div>
+
+            <div style="text-align:center; margin-top:30px;">
+                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali ke Beranda</button>
+            </div>
         </div>
 
         <div id="admin-page">
@@ -365,13 +421,29 @@
                 <i class="fas fa-user-shield" style="font-size: 45px; color: var(--accent); margin-bottom: 10px;"></i>
                 <h2>Menu Pengurus</h2>
             </div>
+
             <div class="admin-grid">
-                <button class="btn-admin" style="background: #2e7d32;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec', 'Input Iuran Manual')"><i class="fas fa-keyboard"></i><span>Input Bayar Iuran Manual</span></button>
-                <button class="btn-admin" style="background: #ef6c00;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbx2exDu-ulTEtX8OMD9YRNvCmEGfoZqhxqn8H7nOTeu-YA5z3zxOF7cSv6xfA7BcBN9/exec', 'Transaksi Bendahara')"><i class="fas fa-money-bill-transfer"></i><span>Input Transaksi Bendahara</span></button>
-                <button class="btn-admin" style="background: #c62828;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbw1oT64TRJ46bd4PWigU-lWZHhUQzsAeLL7i6rOQ74cLa2rAUJ4pbTTLAnZXGRJhvBfdg/exec', 'Monitoring Tunggakan')"><i class="fas fa-triangle-exclamation"></i><span>Monitoring Tunggakan</span></button>
-                <button class="btn-admin" style="background: #1565c0;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec', 'Database Warga')"><i class="fas fa-database"></i><span>Data Lengkap Warga</span></button>
+                <button class="btn-admin" style="background: #2e7d32;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec', 'Input Iuran Manual')">
+                    <i class="fas fa-keyboard"></i>
+                    <span>Input Bayar Iuran Manual</span>
+                </button>
+                <button class="btn-admin" style="background: #ef6c00;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbx2exDu-ulTEtX8OMD9YRNvCmEGfoZqhxqn8H7nOTeu-YA5z3zxOF7cSv6xfA7BcBN9/exec', 'Transaksi Bendahara')">
+                    <i class="fas fa-money-bill-transfer"></i>
+                    <span>Input Transaksi Bendahara</span>
+                </button>
+                <button class="btn-admin" style="background: #c62828;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbw1oT64TRJ46bd4PWigU-lWZHhUQzsAeLL7i6rOQ74cLa2rAUJ4pbTTLAnZXGRJhvBfdg/exec', 'Monitoring Tunggakan')">
+                    <i class="fas fa-triangle-exclamation"></i>
+                    <span>Monitoring Tunggakan</span>
+                </button>
+                <button class="btn-admin" style="background: #1565c0;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec', 'Database Warga')">
+                    <i class="fas fa-database"></i>
+                    <span>Data Lengkap Warga</span>
+                </button>
             </div>
-            <div style="text-align:center; margin-top:30px;"><button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali</button></div>
+
+            <div style="text-align:center; margin-top:30px;">
+                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali ke Beranda</button>
+            </div>
         </div>
 
         <footer>
@@ -384,28 +456,75 @@
     <div class="modal-overlay" id="pinModal">
         <div class="modal-content">
             <h4 style="color: var(--primary);">Verifikasi Pengurus</h4>
-            <div class="pin-display"><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div></div>
+            <div class="pin-display">
+                <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
+                <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
+            </div>
             <div class="keypad">
-                <button class="key" onclick="pressKey('1')">1</button><button class="key" onclick="pressKey('2')">2</button><button class="key" onclick="pressKey('3')">3</button>
-                <button class="key" onclick="pressKey('4')">4</button><button class="key" onclick="pressKey('5')">5</button><button class="key" onclick="pressKey('6')">6</button>
-                <button class="key" onclick="pressKey('7')">7</button><button class="key" onclick="pressKey('8')">8</button><button class="key" onclick="pressKey('9')">9</button>
-                <button class="key" style="color:var(--danger)" onclick="clearPin()">C</button><button class="key" onclick="pressKey('0')">0</button><button class="key" onclick="closePinModal()"><i class="fas fa-times"></i></button>
+                <button class="key" onclick="pressKey('1')">1</button>
+                <button class="key" onclick="pressKey('2')">2</button>
+                <button class="key" onclick="pressKey('3')">3</button>
+                <button class="key" onclick="pressKey('4')">4</button>
+                <button class="key" onclick="pressKey('5')">5</button>
+                <button class="key" onclick="pressKey('6')">6</button>
+                <button class="key" onclick="pressKey('7')">7</button>
+                <button class="key" onclick="pressKey('8')">8</button>
+                <button class="key" onclick="pressKey('9')">9</button>
+                <button class="key" style="color:var(--danger)" onclick="clearPin()">C</button>
+                <button class="key" onclick="pressKey('0')">0</button>
+                <button class="key" onclick="closePinModal()"><i class="fas fa-times"></i></button>
             </div>
         </div>
     </div>
 
     <script>
+        // --- PWA LOGIC ---
         let deferredPrompt;
         const btnInstall = document.getElementById('btn-install');
-        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+        });
+
         btnInstall.addEventListener('click', (e) => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choice) => { if (choice.outcome === 'accepted') btnInstall.style.display = 'none'; deferredPrompt = null; });
-            } else { alert("Gunakan menu 'Tambah ke Layar Utama' pada browser Anda."); }
+                deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') btnInstall.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            } else {
+                alert("Cara Instal:\n1. Klik ikon 'Bagikan' (Share)\n2. Pilih 'Tambah ke Layar Utama' (Add to Home Screen)");
+            }
         });
-        if ('serviceWorker' in navigator) { window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Error', err)); }); }
 
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Error', err));
+            });
+        }
+
+        // --- NAVIGATION LOGIC (UPDATED) ---
+        function hideAllPages() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('admin-page').style.display = 'none';
+            document.getElementById('pengurus-page').style.display = 'none';
+        }
+
+        function showPengurusPage() {
+            hideAllPages();
+            document.getElementById('pengurus-page').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        function goHome() {
+            hideAllPages();
+            document.getElementById('main-page').style.display = 'block';
+            window.scrollTo(0,0);
+        }
+
+        // --- PREVIOUS LOGIC (KUMULATIF) ---
         let inputPin = "";
         const targetPin = "784512";
 
@@ -416,35 +535,50 @@
             document.getElementById('app-viewer').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
-        function closeApp() { document.getElementById('app-viewer').style.display = 'none'; document.getElementById('iframe-app').src = ""; document.body.style.overflow = 'auto'; }
-        function hideLoader() { document.getElementById('app-loader').style.display = 'none'; }
-        
-        function showPengurusList() {
-            document.getElementById('main-page').style.display = 'none';
-            document.getElementById('pengurus-list-page').style.display = 'block';
-            window.scrollTo(0,0);
+
+        function closeApp() {
+            document.getElementById('app-viewer').style.display = 'none';
+            document.getElementById('iframe-app').src = "";
+            document.body.style.overflow = 'auto';
         }
 
-        function openPinModal() { inputPin = ""; updateDots(); document.getElementById('pinModal').style.display = 'flex'; }
-        function closePinModal() { document.getElementById('pinModal').style.display = 'none'; }
-        function pressKey(n) { if(inputPin.length < 6) { inputPin += n; updateDots(); if(inputPin.length === 6) setTimeout(verifyPin, 150); } }
+        function hideLoader() { document.getElementById('app-loader').style.display = 'none'; }
+        
+        function openPinModal() { 
+            inputPin = ""; 
+            updateDots(); 
+            document.getElementById('pinModal').style.display = 'flex'; 
+        }
+        
+        function closePinModal() { 
+            document.getElementById('pinModal').style.display = 'none'; 
+        }
+        
+        function pressKey(n) { 
+            if(inputPin.length < 6) { 
+                inputPin += n; 
+                updateDots(); 
+                if(inputPin.length === 6) setTimeout(verifyPin, 150); 
+            } 
+        }
+        
         function clearPin() { inputPin = ""; updateDots(); }
-        function updateDots() { const dots = document.querySelectorAll('.pin-dot'); dots.forEach((dot, i) => dot.classList.toggle('active', i < inputPin.length)); }
+        
+        function updateDots() {
+            const dots = document.querySelectorAll('.pin-dot');
+            dots.forEach((dot, i) => dot.classList.toggle('active', i < inputPin.length));
+        }
         
         function verifyPin() {
             if(inputPin === targetPin) {
                 closePinModal();
-                document.getElementById('main-page').style.display = 'none';
-                document.getElementById('pengurus-list-page').style.display = 'none';
+                hideAllPages();
                 document.getElementById('admin-page').style.display = 'block';
                 window.scrollTo(0,0);
-            } else { alert("PIN SALAH!"); clearPin(); }
-        }
-        
-        function goHome() {
-            document.getElementById('admin-page').style.display = 'none';
-            document.getElementById('pengurus-list-page').style.display = 'none';
-            document.getElementById('main-page').style.display = 'block';
+            } else {
+                alert("PIN SALAH!");
+                clearPin();
+            }
         }
     </script>
 </body>
