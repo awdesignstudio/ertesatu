@@ -23,6 +23,7 @@
             --text: #333;
             --white: #ffffff;
             --danger: #d32f2f;
+            --wa-color: #25d366;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -104,7 +105,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* SURGICAL UPDATE: Install Section Styles */
         #btn-install {
             display: inline-block;
             margin: 15px auto 8px;
@@ -131,7 +131,6 @@
             font-weight: 400;
         }
 
-        /* Auto-hide Install UI in Standalone Mode */
         @media (display-mode: standalone) {
             #btn-install, .install-info {
                 display: none !important;
@@ -205,6 +204,61 @@
         }
         .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
         .info-box p { font-size: 12px; color: #555; }
+
+        /* --- SURGICAL UPDATE: Susunan Pengurus Section --- */
+        .pengurus-section {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .pengurus-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .pengurus-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pengurus-item {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: 1px solid #eee;
+        }
+        .pengurus-info h4 {
+            font-size: 14px;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+        .pengurus-info p {
+            font-size: 11px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .btn-wa {
+            background-color: var(--wa-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 0 4px 8px rgba(37, 211, 102, 0.3);
+            transition: 0.2s;
+        }
+        .btn-wa:active { transform: scale(0.85); }
 
         /* --- ADMIN SECTION --- */
         #admin-page { display: none; padding-top: 20px; }
@@ -325,6 +379,75 @@
                 <h4>Transparansi Kas</h4>
                 <p>Laporan iuran warga yang dipublikasikan secara terbuka.</p>
             </div>
+
+            <div class="pengurus-section">
+                <h3><i class="fas fa-users-rectangle"></i> Susunan Pengurus</h3>
+                <div class="pengurus-list">
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Joko</h4>
+                            <p>Ketua RT</p>
+                        </div>
+                        <a href="https://wa.me/6285643748060" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Lutfi</h4>
+                            <p>Sekretaris</p>
+                        </div>
+                        <a href="https://wa.me/6281902501958" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Nuril</h4>
+                            <p>Bendahara 1</p>
+                        </div>
+                        <a href="https://wa.me/6281325745951" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Wiku</h4>
+                            <p>Bendahara 2</p>
+                        </div>
+                        <a href="https://wa.me/6285291310312" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Aris</h4>
+                            <p>Seksi Keamanan</p>
+                        </div>
+                        <a href="https://wa.me/628112962603" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Adi</h4>
+                            <p>Seksi Kebersihan</p>
+                        </div>
+                        <a href="https://wa.me/6285866203352" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Mahmud</h4>
+                            <p>Seksi Pembangunan/Sarpras</p>
+                        </div>
+                        <a href="https://wa.me/6281393841122" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Banar</h4>
+                            <p>Seksi Humas</p>
+                        </div>
+                        <a href="https://wa.me/6287821807879" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <div class="pengurus-item">
+                        <div class="pengurus-info">
+                            <h4>Adi Wibowo</h4>
+                            <p>Seksi Ekonomi/Event</p>
+                        </div>
+                        <a href="https://wa.me/6281299858390" class="btn-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="admin-page">
@@ -416,7 +539,7 @@
             });
         }
 
-        // --- PREVIOUS LOGIC (KUMULATIF) ---
+        // --- LOGIC PORTAL & PIN ---
         let inputPin = "";
         const targetPin = "784512";
 
