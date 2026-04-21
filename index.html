@@ -172,7 +172,6 @@
             font-size: 14px;
         }
 
-        /* --- UPDATED GRID MENU (SURGICAL) --- */
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -323,7 +322,7 @@
 
     <header id="main-header">
         <i class="fas fa-house-chimney-window" style="font-size: 45px; margin-bottom: 15px;"></i>
-        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA HARMONI</h1>
+        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA</h1>
         <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Sistem Informasi & Layanan Warga Digital</p>
         <button id="btn-install"><i class="fas fa-cloud-arrow-down"></i> Instal Aplikasi</button>
         <p class="install-info">Instal aplikasi di layar HP untuk akses lebih cepat, praktis, dan tampilan penuh tanpa bar browser.</p>
@@ -421,6 +420,10 @@
                 <h2>Menu Pengurus</h2>
             </div>
             <div class="admin-grid">
+                <button class="btn-admin" style="background: #546e7a;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec?page=admin', 'Setting Iuran Terakhir')">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Setting Iuran Terakhir Dibayar</span>
+                </button>
                 <button class="btn-admin" style="background: #2e7d32;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbxW4om2j4VLuRt67CIFRsopxGIFjS0asUMKD_lGkduy7SgLm9mTM6wYeC7P0_PblU6W/exec', 'Input Iuran Manual')">
                     <i class="fas fa-keyboard"></i>
                     <span>Input Bayar Iuran Manual</span>
@@ -446,7 +449,7 @@
         <footer>
             <div class="v-text" onclick="openPinModal()">v2.0.26-PWA.stable</div>
             <p>&copy; 2026 RT 01 Permata Harmoni</p>
-            <p style="opacity: 0.4; font-size: 9px; margin-top: 5px;">Supported by AW Design</p>
+            <p style="opacity: 0.4; font-size: 9px; margin-top: 5px;">Supported by AW Design Studio</p>
         </footer>
     </div>
 
