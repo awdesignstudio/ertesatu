@@ -9,9 +9,7 @@
     <meta name="theme-color" content="#1a73e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/6009/6009864.png">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="logo.png"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -105,6 +103,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
+        /* Surgical: Style Logo Baru */
+        .app-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
         #btn-install {
             display: inline-block;
             margin: 15px auto 8px;
@@ -190,7 +196,6 @@
             cursor: pointer;
         }
         
-        /* Memanjang Card */
         .card-full {
             grid-column: span 2;
             display: flex !important;
@@ -321,9 +326,8 @@
     </div>
 
     <header id="main-header">
-        <i class="fas fa-house-chimney-window" style="font-size: 45px; margin-bottom: 15px;"></i>
-        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA HARMONI</h1>
-        <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Sistem Informasi & Layanan Warga Digital</p>
+        <img src="logo.png" alt="Logo RT 01" class="app-logo">
+        <h1 style="font-size: 20px; font-weight: 800; letter-spacing: 1px; display: none;">RT 01 PERMATA</h1> <p style="font-size: 12px; opacity: 0.9; font-weight: 400; max-width: 300px; margin: 0 auto;">Sistem Informasi & Layanan Warga Digital</p>
         <button id="btn-install"><i class="fas fa-cloud-arrow-down"></i> Instal Aplikasi</button>
         <p class="install-info">Instal aplikasi di layar HP untuk akses lebih cepat, praktis, dan tampilan penuh tanpa bar browser.</p>
     </header>
@@ -334,7 +338,7 @@
             <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec', 'Pembayaran Iuran')" class="hero-card">
                 <p style="font-size: 14px; opacity: 0.9;">Halo Tetangga,</p>
                 <h2 style="font-size: 22px; margin: 5px 0;">Iuran Warga RT 01</h2>
-                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan secara online.</p>
+                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan online.</p>
                 <div class="btn-pay">Bayar Sekarang <i class="fas fa-chevron-right" style="font-size: 12px; margin-left: 5px;"></i></div>
                 <i class="fas fa-wallet" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: 0.2;"></i>
             </div>
@@ -373,35 +377,35 @@
             </div>
             <div class="board-list">
                 <div class="board-item">
-                    <div class="board-info"><h4>Joko Puji Leksono</h4><p>Ketua RT</p></div>
+                    <div class="board-info"><h4>Joko</h4><p>Ketua RT</p></div>
                     <a href="https://wa.me/6285643748060" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Lutfi Yusuf Asrofi J</h4><p>Sekretaris</p></div>
+                    <div class="board-info"><h4>Lutfi</h4><p>Sekretaris</p></div>
                     <a href="https://wa.me/6281902501958" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Nuril Arbai</h4><p>Bendahara 1</p></div>
+                    <div class="board-info"><h4>Nuril</h4><p>Bendahara 1</p></div>
                     <a href="https://wa.me/6281325745951" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Triana Wiku Haryadi</h4><p>Bendahara 2</p></div>
+                    <div class="board-info"><h4>Wiku</h4><p>Bendahara 2</p></div>
                     <a href="https://wa.me/6285291310312" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Aris Sutanto</h4><p>Seksi Keamanan</p></div>
+                    <div class="board-info"><h4>Aris</h4><p>Seksi Keamanan</p></div>
                     <a href="https://wa.me/628112962603" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Adi Yulianto</h4><p>Seksi Kebersihan</p></div>
+                    <div class="board-info"><h4>Adi</h4><p>Seksi Kebersihan</p></div>
                     <a href="https://wa.me/6285866203352" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>M. Mahmudi</h4><p>Seksi Pembangunan/Sarana</p></div>
+                    <div class="board-info"><h4>Mahmud</h4><p>Seksi Pembangunan/Sarana</p></div>
                     <a href="https://wa.me/6281393841122" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
-                    <div class="board-info"><h4>Rakhmad Banar Sasana</h4><p>Seksi Humas</p></div>
+                    <div class="board-info"><h4>Banar</h4><p>Seksi Humas</p></div>
                     <a href="https://wa.me/6287821807879" class="btn-wa-member" target="_blank"><i class="fab fa-whatsapp"></i> Chat</a>
                 </div>
                 <div class="board-item">
