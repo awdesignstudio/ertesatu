@@ -172,6 +172,7 @@
             font-size: 14px;
         }
 
+        /* --- UPDATED GRID MENU (SURGICAL) --- */
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -189,8 +190,21 @@
             transition: 0.2s;
             cursor: pointer;
         }
-        .card-small:active { transform: scale(0.92); background: #f8f9fa; }
+        
+        /* Memanjang Card */
+        .card-full {
+            grid-column: span 2;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px !important;
+        }
+
+        .card-small:active { transform: scale(0.95); background: #f8f9fa; }
         .card-small i { font-size: 30px; color: var(--primary); margin-bottom: 12px; display: block; }
+        .card-full i { margin-bottom: 0 !important; font-size: 32px; }
         .card-small span { font-size: 14px; font-weight: 700; color: #444; }
 
         .info-box {
@@ -203,7 +217,7 @@
         .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
         .info-box p { font-size: 12px; color: #555; }
 
-        /* --- BOARD PAGE (SURGICAL UPDATE) --- */
+        /* --- BOARD PAGE --- */
         #board-page { display: none; padding-top: 20px; }
         .board-list { display: flex; flex-direction: column; gap: 12px; }
         .board-item {
@@ -327,6 +341,11 @@
             </div>
 
             <div class="grid-menu">
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbztg35EF5QIxSzYTSFg2XoXbsS4sOdYjRg95s5ieyTP6vvMniPgkVBehpwYDwvJUu9U/exec', 'Laporan Keuangan')" class="card-small card-full">
+                    <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
+                    <span>Laporan Keuangan RT</span>
+                </div>
+
                 <div onclick="showBoard()" class="card-small">
                     <i class="fas fa-users-line" style="color: #6a1b9a;"></i>
                     <span>Susunan Pengurus</span>
@@ -334,10 +353,6 @@
                 <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyB9e_R8ywyrIDdKLfGWWTskmpcn_M_u2pi1RkCCCzS9LHkwMP9Whw-v8aWOratr8CEog/exec', 'Denah Warga')" class="card-small">
                     <i class="fas fa-map-location-dot"></i>
                     <span>Denah Warga</span>
-                </div>
-                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbztg35EF5QIxSzYTSFg2XoXbsS4sOdYjRg95s5ieyTP6vvMniPgkVBehpwYDwvJUu9U/exec', 'Laporan Keuangan')" class="card-small">
-                    <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
-                    <span>Lap. Keuangan</span>
                 </div>
             </div>
 
