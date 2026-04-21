@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIWARGA RT 01</title>
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a73e8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/6009/6009864.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -17,7 +23,6 @@
             --text: #333;
             --white: #ffffff;
             --danger: #d32f2f;
-            --admin-bg: #fffbf0;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -30,7 +35,7 @@
             overflow-x: hidden;
         }
 
-        /* Portal Viewer Style */
+        /* --- PORTAL VIEWER --- */
         #app-viewer {
             display: none;
             position: fixed;
@@ -64,7 +69,6 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .btn-close-viewer:active { transform: scale(0.9); background: #e9ecef; }
 
         #app-loader {
             position: absolute;
@@ -87,10 +91,9 @@
         }
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
         iframe { flex: 1; width: 100%; border: none; }
 
-        /* Main UI Style */
+        /* --- UI COMPONENTS --- */
         header {
             background: linear-gradient(135deg, var(--primary), #1557b0);
             color: var(--white);
@@ -101,13 +104,36 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
+        /* SURGICAL UPDATE: PWA Install Button */
+        #btn-install {
+            display: inline-block; /* Muncul secara default di browser */
+            margin: 15px auto;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.2s;
+        }
+        #btn-install:active { transform: scale(0.9); }
+
+        /* SURGICAL UPDATE: Hide button when in standalone mode */
+        @media (display-mode: standalone) {
+            #btn-install {
+                display: none !important;
+            }
+        }
+
         .container {
             max-width: 500px;
             margin: -30px auto 50px;
             padding: 0 20px;
         }
 
-        /* Hero Card */
         .hero-card {
             background: linear-gradient(135deg, #43a047, #2e7d32);
             border-radius: 25px;
@@ -138,7 +164,6 @@
             font-size: 14px;
         }
 
-        /* Grid Menu */
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -160,7 +185,6 @@
         .card-small i { font-size: 30px; color: var(--primary); margin-bottom: 12px; display: block; }
         .card-small span { font-size: 14px; font-weight: 700; color: #444; }
 
-        /* Description Cards */
         .info-box {
             background: #e3f2fd;
             padding: 20px;
@@ -171,7 +195,7 @@
         .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
         .info-box p { font-size: 12px; color: #555; }
 
-        /* Admin Page UI */
+        /* --- ADMIN SECTION --- */
         #admin-page { display: none; padding-top: 20px; }
         .admin-header { text-align: center; margin-bottom: 30px; }
         
@@ -193,7 +217,7 @@
         }
         .btn-admin:active { transform: scale(0.97); }
 
-        /* Modal PIN */
+        /* --- MODAL PIN --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -253,8 +277,10 @@
 
     <header id="main-header">
         <i class="fas fa-house-chimney-window" style="font-size: 45px; margin-bottom: 15px;"></i>
-        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA HARMONI</h1>
+        <h1 style="font-size: 24px; font-weight: 800; letter-spacing: 1px;">RT 01 PERMATA</h1>
         <p style="font-size: 13px; opacity: 0.9; font-weight: 400;">Sistem Informasi & Layanan Warga Digital</p>
+        
+        <button id="btn-install"><i class="fas fa-download"></i> Instal Aplikasi</button>
     </header>
 
     <div class="container">
@@ -263,7 +289,7 @@
             <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec', 'Pembayaran Iuran')" class="hero-card">
                 <p style="font-size: 14px; opacity: 0.9;">Halo Tetangga,</p>
                 <h2 style="font-size: 22px; margin: 5px 0;">Iuran Warga RT 01</h2>
-                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan secara online.</p>
+                <p style="font-size: 12px; opacity: 0.8;">Klik untuk membayar iuran bulanan online.</p>
                 <div class="btn-pay">Bayar Sekarang <i class="fas fa-chevron-right" style="font-size: 12px; margin-left: 5px;"></i></div>
                 <i class="fas fa-wallet" style="position: absolute; right: -10px; bottom: -10px; font-size: 80px; opacity: 0.2;"></i>
             </div>
@@ -281,11 +307,11 @@
 
             <div class="info-box">
                 <h4>Denah Digital</h4>
-                <p>Memudahkan pencarian alamat rumah warga dan pemetaan status iuran warga RT 01.</p>
+                <p>Informasi pemetaan rumah warga RT 01 Permata Harmoni.</p>
             </div>
             <div class="info-box">
                 <h4>Transparansi Kas</h4>
-                <p>Seluruh dana iuran yang masuk dipublikasikan secara real-time demi akuntabilitas bersama.</p>
+                <p>Laporan iuran warga yang dipublikasikan secara terbuka.</p>
             </div>
         </div>
 
@@ -293,7 +319,6 @@
             <div class="admin-header">
                 <i class="fas fa-user-shield" style="font-size: 45px; color: var(--accent); margin-bottom: 10px;"></i>
                 <h2>Menu Pengurus</h2>
-                <p style="font-size: 13px; color: #666;">Akses khusus Ketua RT & Bendahara</p>
             </div>
 
             <div class="admin-grid">
@@ -316,12 +341,12 @@
             </div>
 
             <div style="text-align:center; margin-top:30px;">
-                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali ke Beranda</button>
+                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali</button>
             </div>
         </div>
 
         <footer>
-            <div class="v-text" onclick="openPinModal()">v2.0.26-build.stable</div>
+            <div class="v-text" onclick="openPinModal()">v2.0.26-PWA.stable</div>
             <p>&copy; 2026 RT 01 Permata Harmoni</p>
             <p style="opacity: 0.4; font-size: 9px; margin-top: 5px;">Supported by AW Design</p>
         </footer>
@@ -330,13 +355,10 @@
     <div class="modal-overlay" id="pinModal">
         <div class="modal-content">
             <h4 style="color: var(--primary);">Verifikasi Pengurus</h4>
-            <p style="font-size: 12px; color: #888; margin-bottom: 5px;">Masukkan 6 digit PIN rahasia</p>
-            
             <div class="pin-display">
                 <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
                 <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
             </div>
-
             <div class="keypad">
                 <button class="key" onclick="pressKey('1')">1</button>
                 <button class="key" onclick="pressKey('2')">2</button>
@@ -355,10 +377,39 @@
     </div>
 
     <script>
+        // --- SURGICAL PWA LOGIC ---
+        let deferredPrompt;
+        const btnInstall = document.getElementById('btn-install');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Tombol tetap terlihat via CSS default display
+        });
+
+        btnInstall.addEventListener('click', (e) => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choice) => {
+                    if (choice.outcome === 'accepted') btnInstall.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            } else {
+                // Fallback untuk browser yang tidak mendukung prompt otomatis (seperti iOS Safari)
+                alert("Cara Instal:\n1. Klik ikon 'Bagikan' (Share)\n2. Pilih 'Tambah ke Layar Utama' (Add to Home Screen)");
+            }
+        });
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log('SW Error', err));
+            });
+        }
+
+        // --- PREVIOUS LOGIC (KUMULATIF) ---
         let inputPin = "";
         const targetPin = "784512";
 
-        // Portal Logic
         function openInPortal(url, title) {
             document.getElementById('viewer-title').innerText = title;
             document.getElementById('app-loader').style.display = 'flex'; 
@@ -373,40 +424,15 @@
             document.body.style.overflow = 'auto';
         }
 
-        function hideLoader() {
-            document.getElementById('app-loader').style.display = 'none';
-        }
-
-        // Navigation Logic
-        function openPinModal() {
-            inputPin = "";
-            updateDots();
-            document.getElementById('pinModal').style.display = 'flex';
-        }
-
-        function closePinModal() {
-            document.getElementById('pinModal').style.display = 'none';
-        }
-
-        function pressKey(n) {
-            if(inputPin.length < 6) {
-                inputPin += n;
-                updateDots();
-                if(inputPin.length === 6) {
-                    setTimeout(verifyPin, 150);
-                }
-            }
-        }
-
+        function hideLoader() { document.getElementById('app-loader').style.display = 'none'; }
+        function openPinModal() { inputPin = ""; updateDots(); document.getElementById('pinModal').style.display = 'flex'; }
+        function closePinModal() { document.getElementById('pinModal').style.display = 'none'; }
+        function pressKey(n) { if(inputPin.length < 6) { inputPin += n; updateDots(); if(inputPin.length === 6) setTimeout(verifyPin, 150); } }
         function clearPin() { inputPin = ""; updateDots(); }
-
         function updateDots() {
             const dots = document.querySelectorAll('.pin-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i < inputPin.length);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i < inputPin.length));
         }
-
         function verifyPin() {
             if(inputPin === targetPin) {
                 closePinModal();
@@ -418,11 +444,7 @@
                 clearPin();
             }
         }
-
-        function goHome() {
-            document.getElementById('admin-page').style.display = 'none';
-            document.getElementById('main-page').style.display = 'block';
-        }
+        function goHome() { document.getElementById('admin-page').style.display = 'none'; document.getElementById('main-page').style.display = 'block'; }
     </script>
 </body>
 </html>
