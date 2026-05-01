@@ -9,7 +9,8 @@
     <meta name="theme-color" content="#1a73e8">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="logo.png"> <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="logo.png"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -103,7 +104,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Surgical: Style Logo Baru */
         .app-logo {
             width: 140px;
             height: auto;
@@ -188,12 +188,16 @@
         .card-small {
             background: white;
             border-radius: 22px;
-            padding: 25px 15px;
+            padding: 20px 15px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             border: 1px solid #eee;
             transition: 0.2s;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
         
         .card-full {
@@ -201,25 +205,17 @@
             display: flex !important;
             flex-direction: row !important;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 20px;
             padding: 20px !important;
+            text-align: left;
         }
 
         .card-small:active { transform: scale(0.95); background: #f8f9fa; }
-        .card-small i { font-size: 30px; color: var(--primary); margin-bottom: 12px; display: block; }
-        .card-full i { margin-bottom: 0 !important; font-size: 32px; }
-        .card-small span { font-size: 14px; font-weight: 700; color: #444; }
-
-        .info-box {
-            background: #e3f2fd;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 15px;
-            border-left: 5px solid var(--primary);
-        }
-        .info-box h4 { font-size: 15px; color: var(--primary); margin-bottom: 5px; }
-        .info-box p { font-size: 12px; color: #555; }
+        .card-small i { font-size: 30px; color: var(--primary); margin-bottom: 10px; display: block; }
+        .card-full i { margin-bottom: 0 !important; font-size: 36px; min-width: 40px; text-align: center; }
+        .card-small span { font-size: 14px; font-weight: 700; color: #444; line-height: 1.2; display: block;}
+        .card-desc { font-size: 11px; color: #777; margin-top: 8px; font-weight: 400; line-height: 1.3; }
 
         /* --- BOARD PAGE --- */
         #board-page { display: none; padding-top: 20px; }
@@ -253,8 +249,9 @@
 
         /* --- ADMIN SECTION --- */
         #admin-page { display: none; padding-top: 20px; }
-        .admin-header { text-align: center; margin-bottom: 30px; }
-        .admin-grid { display: flex; flex-direction: column; gap: 12px; }
+        .admin-header { text-align: center; margin-bottom: 20px; }
+        .admin-header h2 { font-size: 18px; color: var(--text); }
+        .admin-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
         .btn-admin {
             padding: 20px;
             border-radius: 18px;
@@ -307,7 +304,7 @@
         }
         .key:active { background: #e2e8f0; transform: scale(0.9); }
 
-        footer { text-align: center; padding: 40px 20px; font-size: 11px; color: #aaa; }
+        footer { text-align: center; padding: 20px; font-size: 11px; color: #aaa; }
         .v-text { cursor: pointer; padding: 10px; display: inline-block; opacity: 0.5; }
     </style>
 </head>
@@ -327,7 +324,8 @@
 
     <header id="main-header">
         <img src="logo.png" alt="Logo RT 01" class="app-logo">
-        <h1 style="font-size: 20px; font-weight: 800; letter-spacing: 1px; display: none;">RT 01 PERMATA</h1> <p style="font-size: 12px; opacity: 0.9; font-weight: 400; max-width: 300px; margin: 0 auto;">Sistem Informasi & Layanan Warga Digital</p>
+        <h1 style="font-size: 20px; font-weight: 800; letter-spacing: 1px; display: none;">RT 01 PERMATA</h1> 
+        <p style="font-size: 12px; opacity: 0.9; font-weight: 400; max-width: 300px; margin: 0 auto;">Sistem Informasi & Layanan Warga Digital</p>
         <button id="btn-install"><i class="fas fa-cloud-arrow-down"></i> Instal Aplikasi</button>
         <p class="install-info">Instal aplikasi di layar HP untuk akses lebih cepat, praktis, dan tampilan penuh tanpa bar browser.</p>
     </header>
@@ -346,26 +344,41 @@
             <div class="grid-menu">
                 <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbztg35EF5QIxSzYTSFg2XoXbsS4sOdYjRg95s5ieyTP6vvMniPgkVBehpwYDwvJUu9U/exec', 'Laporan Keuangan')" class="card-small card-full">
                     <i class="fas fa-chart-pie" style="color: var(--accent);"></i>
-                    <span>Laporan Keuangan RT</span>
+                    <div>
+                        <span>Laporan Keuangan RT</span>
+                        <p class="card-desc">Laporan iuran dan transparansi kas warga yang dipublikasikan secara terbuka.</p>
+                    </div>
                 </div>
 
                 <div onclick="showBoard()" class="card-small">
                     <i class="fas fa-users-line" style="color: #6a1b9a;"></i>
                     <span>Susunan Pengurus</span>
+                    <p class="card-desc">Informasi kontak pengurus RT 01.</p>
                 </div>
                 <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbyB9e_R8ywyrIDdKLfGWWTskmpcn_M_u2pi1RkCCCzS9LHkwMP9Whw-v8aWOratr8CEog/exec', 'Denah Warga')" class="card-small">
                     <i class="fas fa-map-location-dot"></i>
                     <span>Denah Warga</span>
+                    <p class="card-desc">Informasi pemetaan rumah warga RT 01 Permata Harmoni.</p>
                 </div>
-            </div>
 
-            <div class="info-box">
-                <h4>Denah Digital</h4>
-                <p>Informasi pemetaan rumah warga RT 01 Permata Harmoni.</p>
-            </div>
-            <div class="info-box">
-                <h4>Transparansi Kas</h4>
-                <p>Laporan iuran warga yang dipublikasikan secara terbuka.</p>
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbw-UOmQMiHqSXA_799dIOPeL9UInx0ZLhnrUEDdsC5cDgRlBUSzVsuIio5YIvkmgAkr/exec', 'Notulen Rapat')" class="card-small">
+                    <i class="fas fa-file-signature" style="color: #0288d1;"></i>
+                    <span>Notulen Rapat</span>
+                    <p class="card-desc">Catatan dan hasil keputusan rapat warga RT 01.</p>
+                </div>
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbzBzHNaBKccDxOrSGSj4Zt8iBDtmkC0eFKXitMPwjwvI_AcG_joaO3fb6aW0tdbfTelxQ/exec', 'Laporan Warga')" class="card-small">
+                    <i class="fas fa-bullhorn" style="color: #e53935;"></i>
+                    <span>Laporan Warga</span>
+                    <p class="card-desc">Wadah aspirasi dan pelaporan kejadian lingkungan.</p>
+                </div>
+
+                <div onclick="openInPortal('https://script.google.com/macros/s/AKfycbwaWtFIDdyhDgZoqJigrixgDuHVkH7t2NuzmLhuU9LQQhpuOO5StIzmbeoElpkWrY84mQ/exec', 'Daftar Hadir Absensi')" class="card-small card-full">
+                    <i class="fas fa-clipboard-user" style="color: #43a047;"></i>
+                    <div>
+                        <span>Daftar Hadir Absensi</span>
+                        <p class="card-desc">Pencatatan dan rekap kehadiran warga pada setiap kegiatan atau pertemuan.</p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -373,7 +386,7 @@
             <div class="admin-header">
                 <i class="fas fa-id-card" style="font-size: 45px; color: #6a1b9a; margin-bottom: 10px;"></i>
                 <h2>Susunan Pengurus</h2>
-                <p style="font-size: 12px; color: #666;">Hubungi pengurus RT 01 melalui WhatsApp</p>
+                <p style="font-size: 12px; color: #666; margin-top: -5px;">Hubungi pengurus RT 01 melalui WhatsApp</p>
             </div>
             <div class="board-list">
                 <div class="board-item">
@@ -419,9 +432,11 @@
         </div>
 
         <div id="admin-page">
+            
+            <!-- Segmen 1: Menu Bendahara -->
             <div class="admin-header">
-                <i class="fas fa-user-shield" style="font-size: 45px; color: var(--accent); margin-bottom: 10px;"></i>
-                <h2>Menu Pengurus</h2>
+                <i class="fas fa-wallet" style="font-size: 40px; color: var(--accent); margin-bottom: 10px;"></i>
+                <h2>Menu Bendahara</h2>
             </div>
             <div class="admin-grid">
                 <button class="btn-admin" style="background: #546e7a;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbyJ_OBpp-bD-ByV6kjVgi6CNHpJXM39iERvOuJEWMRacMFDMa_t0At_KTbXwzL-SXjA/exec?page=admin', 'Setting Iuran Terakhir')">
@@ -440,18 +455,47 @@
                     <i class="fas fa-triangle-exclamation"></i>
                     <span>Monitoring Tunggakan</span>
                 </button>
+            </div>
+
+            <!-- Segmen 2: Menu Seluruh Pengurus -->
+            <div class="admin-header">
+                <i class="fas fa-users-cog" style="font-size: 40px; color: #43a047; margin-bottom: 10px;"></i>
+                <h2>Menu Seluruh Pengurus</h2>
+            </div>
+            <div class="admin-grid">
                 <button class="btn-admin" style="background: #1565c0;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbzFwlYjSKj842RE1DSWFpwGDU2j0EIvMkfWoQzR7nmSwNa_djVJ62vC3yc8D6kKiGt0/exec', 'Database Warga')">
                     <i class="fas fa-database"></i>
                     <span>Data Lengkap Warga</span>
                 </button>
+                <button class="btn-admin" style="background: #8e24aa;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbwaWtFIDdyhDgZoqJigrixgDuHVkH7t2NuzmLhuU9LQQhpuOO5StIzmbeoElpkWrY84mQ/exec?page=rekap', 'Rekap Kehadiran Warga')">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>Rekap Kehadiran Warga</span>
+                </button>
             </div>
-            <div style="text-align:center; margin-top:30px;">
-                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali</button>
+
+            <!-- Segmen 3: Menu Sekretaris -->
+            <div class="admin-header">
+                <i class="fas fa-user-tie" style="font-size: 40px; color: #0288d1; margin-bottom: 10px;"></i>
+                <h2>Menu Sekretaris</h2>
+            </div>
+            <div class="admin-grid">
+                <button class="btn-admin" style="background: #0277bd;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbwNFgI5SiGi6WLD3TV1SDBybsj2JPJo-dc6Rv6dOz_yU1503rMJa8BoJh6XlgWPFVRB/exec', 'Bikin Undangan Kegiatan')">
+                    <i class="fas fa-envelope-open-text"></i>
+                    <span>Bikin Undangan Kegiatan</span>
+                </button>
+                <button class="btn-admin" style="background: #d84315;" onclick="openInPortal('https://script.google.com/macros/s/AKfycbwaWtFIDdyhDgZoqJigrixgDuHVkH7t2NuzmLhuU9LQQhpuOO5StIzmbeoElpkWrY84mQ/exec?page=admin', 'Bikin PIN Kegiatan')">
+                    <i class="fas fa-key"></i>
+                    <span>Bikin PIN Kegiatan</span>
+                </button>
+            </div>
+
+            <div style="text-align:center; margin-top:10px;">
+                <button onclick="goHome()" style="background:none; border:none; color:#888; cursor:pointer;"><i class="fas fa-house"></i> Kembali ke Beranda</button>
             </div>
         </div>
 
         <footer>
-            <div class="v-text" onclick="openPinModal()">v2.0.26-PWA.stable</div>
+            <div class="v-text" onclick="openPinModal()">v2.1.26-PWA.stable</div>
             <p>&copy; 2026 RT 01 Permata Harmoni</p>
             <p style="opacity: 0.4; font-size: 9px; margin-top: 5px;">Supported by AW Design Studio</p>
         </footer>
@@ -459,7 +503,7 @@
 
     <div class="modal-overlay" id="pinModal">
         <div class="modal-content">
-            <h4 style="color: var(--primary);">Verifikasi Pengurus</h4>
+            <h4 style="color: var(--primary);">Halaman Khusus Pengurus RT</h4>
             <div class="pin-display">
                 <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
                 <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
@@ -496,7 +540,7 @@
 
         // --- NAVIGATION LOGIC ---
         let inputPin = "";
-        const targetPin = "784512";
+        const targetPin = "748596";
 
         function openInPortal(url, title) {
             document.getElementById('viewer-title').innerText = title;
